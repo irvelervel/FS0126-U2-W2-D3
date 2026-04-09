@@ -268,3 +268,32 @@ $sizes-map: (
     font-size: $value;
   }
 }
+
+// 9) IF / ELSE
+// in SASS è possibile utilizzare delle direttive "condizionali" al fine di prendere delle decisioni
+// sulla base di determinate condizioni.
+// esempio, utilizzo un valore invece di un altro per una regola CSS, applico un mixin o no etc.
+
+@mixin custom-margin($quantity) {
+  @if $quantity == 0 {
+    margin: none;
+  } @else {
+    margin: $quantity;
+  }
+}
+
+.margin {
+  @include custom-margin(12px);
+}
+
+.no-margin {
+  @include custom-margin(0);
+}
+
+// 10) PARTIALS
+// SASS ci permette di distribuire i nostri stili in modo molto efficace e mantenibile su
+// TANTI diversi files; è possibile ad esempio creare un file solamente per le variabili, oppure
+// solamente per i mixins, per i cicli eccetera eccetera.
+// questi piccoli files che insieme costruiscono l'intera codebase degli stili vengono chiamati PARTIALS
+
+// --> andiamo su app.scss

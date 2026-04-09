@@ -1,0 +1,6 @@
+// qui mettereste tutti i cicli
+@each $name, $value in $sizes-map {
+  .text-#{$name} {
+    font-size: $value;
+  }
+}

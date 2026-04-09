@@ -1,0 +1,24 @@
+// ho chiamato il file "app.scss" ma avrei potuto chiamarlo come volevo, questo nome non ha niente
+// a che fare con il discorso dei partials
+
+// in questo file io NON scriverò nessuno stile; serve solo come "collante" per unificare insieme
+// tutti i miei "partials", ovvero dei piccoli file scss distribuiti che si occuperanno delle varie
+// funzionalità (variabili, cicli, mixins ecc.)
+
+// i singoli file partials, per questione di ordine, li vado a creare in una sotto-cartella "partials"
+
+// tutti i file partials DEVONO avere il nome che comincia con underscore ( _ )
+// questo li farà IGNORARE dal compilatore di SASS, che non genererà automaticamente il loro .css e .css.map
+
+// quindi per quale motivo li creiamo? semplicemente per in una fase successiva IMPORTARLI in questo
+// "app.scss" (SENZA _), in modo da compilarli UNA VOLTA SOLA all'interno di questa struttura.
+
+// IMPORTIAMO I PARTIALS
+@import './partials/reset'; // il file si chiamerebbe "_reset.scss", ma l'import va bene così!
+@import './partials/variables';
+// in variables ho dichiarato sizes-map
+@import './partials/mixins';
+@import './partials/loops';
+// ora in loops uso sizes-map
+@import './partials/animations';
+@import './partials/page'; // questo contiene gli stili veri e propri
