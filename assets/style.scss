@@ -1,0 +1,15 @@
+// questo è un commento in SASS
+// SASS è 100% retrocompatibile con CSS, quindi vuol dire che qui dentro possiamo
+// anche scrivere del normalissimo CSS!
+
+// questo è il file SORGENTE! è qui che voi dovete scrivere e aggiornare i vostri stili...
+// ...il file style.css è generato AUTOMATICAMENTE, è il file "compilato"!
+// NON scrivete mai i vostri stili nel file css, perchè verranno automaticamente cancellati :(
+
+body {
+  margin: 0;
+}
+
+h1 {
+  color: blue;
+}
