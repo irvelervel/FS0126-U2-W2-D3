@@ -173,3 +173,98 @@ $main-border: 2px solid $my-color;
   border: $main-border;
   margin: $special-margin;
 }
+
+// 6) MIXIN
+// un "mixin" in SASS è un BLOCCO di regole/proprietà riutilizzabile, a cui date un nome
+
+@mixin centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin bordered {
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  @include bordered;
+  @include centered; // mi sono trasportato in questo selettore le 3 proprietà di centered
+}
+
+// un po' come le FUNZIONI in JS, i MIXIN in SASS possono accettare... PARAMETRI!
+@mixin custom-border($radius: 0px) {
+  border: 1px solid black;
+  border-radius: $radius;
+}
+
+.border-1 {
+  @include custom-border(20px);
+}
+
+.border-2 {
+  @include custom-border(10px);
+}
+
+.border-3 {
+  @include custom-border;
+}
+
+// 7) INTERPOLAZIONE DI STRINGHE & VALORI
+// ...in JS...
+// const a = 'size';
+// volete ottenere "font-size"
+// 'font-' + a // 'font-size'
+// `font-${a}` // 'font-size'
+
+// in SASS...
+$a: 'size';
+$b: 'weight';
+.prova {
+  // font-size: 16px
+  font-#{$a}: 16px; // font-size: 16px;
+  font-#{$b}: bold; // font-weight: bold;
+}
+
+// 8) C  I  C  L  I
+// in SASS è possibile utilizzare i CICLI per AUTOMATIZZARE la creazione di stili "in serie"
+
+// creiamo una LISTA (quella specie di array in SASS)
+$sizes: 12px, 16px, 20px, 24px;
+// in JS sarebbe: const sizes = ['12px', '16px', '20px', '24px']
+
+// il mio scopo è ora creare 4 classi CSS in cui in ognuna ci sarà una proprietà font-size
+// con un valore diverso (un po' come i fs-1, fs-2, fs-3 etc. di bootstrap)
+
+// in JS forEach è un metodo degli array che cicla un array ed espone, ad ogni iterazione, uno dei
+// suoi valori, a partire dal primo fino a raggiungere l'ultimo.
+// in SASS la sintassi è simile, ma si utilizza la direttiva @each
+// sizes.forEach(size => {}), che sarebbe come dire sizes[i]
+
+@each $size in $sizes {
+  // $size al primo giro è 12px, al secondo 16px, al terzo 20px al quarto 24px
+  .text-#{$size} {
+    font-size: $size;
+  }
+}
+
+// figo! però siamo ancora vincolati dal fatto che $size è un valore in px, e non è proprio adatto
+// ad essere interpolato nel nome della classe...
+// potremmo utilizzare invece una MAPPA, una specie di oggetto in JS:
+$sizes-map: (
+  sm: 12px,
+  md: 16px,
+  lg: 20px,
+  xl: 24px,
+);
+
+@each $name, $value in $sizes-map {
+  // $name è sm, md, lg, xl
+  // $value è 12px, 16px, 20px, 24px
+  .text-#{$name} {
+    font-size: $value;
+  }
+}

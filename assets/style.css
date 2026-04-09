@@ -58,4 +58,66 @@ nav ul li a {
   color: rgb(100, 20, 180);
   border: 2px solid rgb(100, 20, 180);
   margin: 1.5em;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.border-1 {
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.border-2 {
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.border-3 {
+  border: 1px solid black;
+  border-radius: 0px;
+}
+
+.prova {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.text-12px {
+  font-size: 12px;
+}
+
+.text-16px {
+  font-size: 16px;
+}
+
+.text-20px {
+  font-size: 20px;
+}
+
+.text-24px {
+  font-size: 24px;
+}
+
+.text-sm {
+  font-size: 12px;
+}
+
+.text-md {
+  font-size: 16px;
+}
+
+.text-lg {
+  font-size: 20px;
+}
+
+.text-xl {
+  font-size: 24px;
 }/*# sourceMappingURL=style.css.map */
