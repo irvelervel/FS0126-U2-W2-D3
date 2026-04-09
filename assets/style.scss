@@ -6,10 +6,170 @@
 // ...il file style.css è generato AUTOMATICAMENTE, è il file "compilato"!
 // NON scrivete mai i vostri stili nel file css, perchè verranno automaticamente cancellati :(
 
+// Nel corso degli anni, molte delle funzionalità di SASS sono state pian piano trasportate anche
+// in CSS "liscio", come ad esempio le variabili.
+
+// FUNZIONALITÀ DI SASS
+
+// 1) RETROCOMPATIBILE CON CSS
 body {
   margin: 0;
 }
 
 h1 {
   color: blue;
+}
+
+// 2) SELETTORI ANNIDATI / NIDIFICATI ("nested")
+
+// invece di fare...
+
+// nav {
+//   width: 100%;
+//   display: block;
+// }
+
+// nav ul {
+// display: flex;
+// flex-direction: column;
+// margin: 0;
+// padding: 0;
+// list-style-type: none;
+// text-align: center;
+// }
+
+// nav ul li {
+// margin-right: 0.5em;
+// font-family: Arial, Helvetica, sans-serif;
+// }
+
+// nav ul li a {
+// color: black;
+// text-decoration: none;
+// }
+
+// con SASS possiamo fare:
+nav {
+  width: 100%;
+  display: block;
+  ul {
+    // -> nav ul
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: center;
+    li {
+      // -> nav ul li
+      margin-right: 0.5em;
+      font-family: Arial, Helvetica, sans-serif;
+      a {
+        // -> nav ul li a
+        color: black;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+// 3) PSEUDOCLASSI/PSEUDOSELETTORI in SASS
+// se prima facevate...
+// .btn-primary {
+// background-color: purple;
+// color: white;
+// padding: 0.5em 1em;
+// border: 1px solid purple;
+// border-radius: 20px;
+// }
+
+// .btn-primary:hover {
+//   background-color: white;
+//   color: purple;
+// }
+
+// .btn-primary:visited {
+//   background-color: white;
+//   color: gray;
+// }
+
+// ora con SASS potete:
+.btn-primary {
+  background-color: purple;
+  color: white;
+  padding: 0.5em 1em;
+  border: 1px solid purple;
+  border-radius: 20px;
+  &:hover {
+    // la & significa: "SELETTORE CORRENTE"
+    background-color: white;
+    color: purple;
+  }
+  &:visited {
+    background-color: white;
+    color: gray;
+  }
+}
+
+// 4) PREFISSI COMUNI PER PROPRIETÀ SIMILI
+// se prima di SASS...
+// .very-bold {
+//   font-size: 1.5em;
+//   font-weight: bold;
+//   font-style: italic;
+//   font-family: Arial, Helvetica, sans-serif;
+//   border-width: 1px;
+//   border-style: double;
+//   border-color: red;
+//   border-radius: 10px;
+// }
+
+// ora con SASS...
+.very-bold {
+  font: {
+    size: 1.5em;
+    weight: bold;
+    style: italic;
+    family: Arial, Helvetica, sans-serif;
+  }
+
+  border: {
+    width: 1px;
+    style: double;
+    color: red;
+    radius: 10px;
+  }
+}
+
+// --- finite le migliorie "stilistiche" di SASS
+// cominciamo ora il capitolo "FUNZIONALITÀ"
+
+// 5) VARIABILI IN SASS
+// Una variabile in SASS esiste per lo stesso scopo delle variabili nei tradizionali linguaggi di programmazione:
+// -a memorizzare un valore-
+// una semplificazione delle variabili in SASS però sta nel fatto che sostanzialmente le tratteremo
+// sempre come COSTANTI
+
+// cosa possiamo memorizzare in una variabile SASS? detto altrimenti, quali sono i TIPI DI DATO in SASS?
+// - valori numerici (0, 100, 10px, 1.5em, 1rem, etc.)
+// - stringhe ('0 auto', '2px solid black', etc.)
+// - colori (red, #b9b9b9, rgb(40, 200, 60), hsl(233, 81%, 43%), etc.)
+// - booleani (true, false)
+// - null
+// - LISTE (10px, 16px, 24px) -> un po' come gli ARRAY in JS
+// - MAPPE di coppie chiave:valore -> un po' come gli OGGETTI in JS
+
+// come si dichiara una VARIABILE in SASS?
+// per dichiarare una variabile (ma in realtà anche per semplicemente leggerla) si utilizza il $
+// in SASS la nomenclatura tipica delle variabile NON È camelCase (come in JS) ma kebab-case
+// l'operatore di assegnazione valore in SASS è :
+
+$my-color: rgb(100, 20, 180);
+$special-margin: 1.5em;
+$main-border: 2px solid $my-color;
+
+.special-text {
+  color: $my-color;
+  border: $main-border;
+  margin: $special-margin;
 }
